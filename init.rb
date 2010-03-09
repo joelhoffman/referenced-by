@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/lib/referenced_by'
+require File.dirname(__FILE__) + '/lib/references'
 ActiveRecord::Base.class_eval do
-  include ReferencedBy
+  include References
 end
