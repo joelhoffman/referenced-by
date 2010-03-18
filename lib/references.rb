@@ -26,11 +26,7 @@ module References
 
     def _has_many_references(model)
       return unless association = self.reflect_on_association(model.pluralize.to_sym)
-      begin
-        association_class = association.class_name.constantize 
-      rescue 
-        association_class = model.classify.constantize
-      end
+      association_class = association.class_name.constantize
 
       accessors = association_class.instance_variable_get('@referenced_by') || []
 
