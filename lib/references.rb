@@ -1,11 +1,13 @@
 module References
   def self.included(base)
-    base.send :extend, ClassMethods
+    unless base.respond_to?(:belongs_to_with_referenced_by)
+      base.send :extend, ClassMethods
     
-    class << base
-      alias_method_chain :belongs_to, :referenced_by
-      alias_method_chain :has_and_belongs_to_many, :referenced_by
-      alias_method_chain :has_many, :referenced_by
+      class << base
+        alias_method_chain :belongs_to, :referenced_by
+        alias_method_chain :has_and_belongs_to_many, :referenced_by
+        alias_method_chain :has_many, :referenced_by
+      end
     end
   end
   
